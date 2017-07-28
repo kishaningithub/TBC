@@ -163,7 +163,7 @@
                         <div class="row row-sm-offset">
                             <h4>Select a product and required quanity</h4>
                              <div class="form-group">
-                                 <select>
+                                 <select id="company_select">
                                     <option value="Johnson & Johnson">Johnson & Johnson</option>
 		                            <option value="Fresenius">Fresenius</option>
 		                            <option value="Baxter">Baxter</option>
@@ -173,7 +173,7 @@
                              </div>
                             <div class="col-xs-12 col-md-3">
                              <div class="form-group">
-                                 <select>
+                                 <select id="product_select">
                                     <option value="Cidex">Cidex</option>
 		                            <option value="Skin stapler">Skin stapler</option>
 		                            <option value="Eprex">Eprex</option>
@@ -195,36 +195,7 @@
                                 
                             </div>
                         </div>
-                        <div class="row row-sm-offset">
-                            <div class="col-xs-12 col-md-3">
-                             <div class="form-group">
-                                 <select>
-                                    <option value="Dialysis Machine">Dialysis Machine</option>
-		                            <option value="Dialyser">Dialyser</option>
-		                            <option value="Blood Tubing">Blood Tubing</option>
-		                            <option value="Plasma Filters">Plasma Filters</option>
-		                            <option value="Bibag">Bibag</option>
-		                         </select>
-                             </div>
-                            </div>
-                            <div class="col-xs-12 col-md-3">
-                                <div class="form-group">
-                                    <select>
-                                    <option hidden="true">Qty</option>
-		                            <option value="1">1</option>
-		                            <option value="2">2</option>
-		                            <option value="3">3</option>
-		                            <option value="4">4</option>
-		                         </select>
-                                </div>
-                                
-                            </div>
-                        </div>
-                            
-                                 
-                        
-                        
-
+ 
                         <div class="form-group">
                             <label class="form-control-label" for="form1-0-message">Message</label>
                             <textarea class="form-control" name="message" rows="7" data-form-field="Message" id="form1-0-message"></textarea>
@@ -305,6 +276,32 @@
   <script src="assets/viewport-checker/jquery.viewportchecker.js"></script>
   <script src="assets/theme/js/script.js"></script>
   
+  <script>
+   $(function() {
+
+        var company_products = {
+            "Johnson & Johnson" : ["Cidex", "Skin stapler", "Eprex", "Cutter", "Endo"],
+            "Fresenius": ["Dialysis Machine", "Dialyser", "Blood Tubing", "Plasma Filters", "Bibag"],
+            "Baxter": [],
+            "Schulke": [],
+            "Accessories": []
+        };
+
+        $("#company_select").change(function(value) {
+            var company = $(this).val();
+            var products = company_products[company];
+
+            $("#product_select").empty();
+            
+            $.each(products, function(index, value) {
+                $("#product_select").append("<option value=" + value + ">" + value + "</option>");
+            });
+        });
+
+   });
+
+
+  </script>
   
   <input name="animation" type="hidden">
    <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i class="mbr-arrow-up-icon"></i></a></div>
